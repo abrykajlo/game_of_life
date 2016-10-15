@@ -37,6 +37,7 @@ int main(int argc, char** argv)
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 	SDL_GLContext context = SDL_GL_CreateContext(window);
 
+	glewExperimental = GL_TRUE;
 	glewInit();
 
 	Game game;

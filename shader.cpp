@@ -124,9 +124,25 @@ bool Shader::LoadVertexShader(string vert)
 
 bool Shader::LinkProgram() 
 {
-	return false;
+	glLinkProgram(program);
+
+	int isLinked = 0;
+	glGetProgramiv(program, GL_LINK_STATUS, &isLinked);
+
+	if (!isLinked) {
+		char infoLog[1000];
+		int length;
+		glGetProgramInfoLog(program, 1000, &length, infoLog);
+		printf("%s", infoLog);
+		return false;
+	}
+	return true;
 }
 
 bool Shader::IsValid() {
-	return false;
+	glValidateProgram(program);
+
+	int isValid = 0;
+	glGetProgramiv(program, GL_VALIDATE_STATUS, &isValid);
+	return isValid;
 }
