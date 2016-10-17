@@ -45,8 +45,27 @@ Cell::~Cell() {
 void Cell::Draw() {
 	if (shader.IsValid()) {
 		shader.UseProgram();
-		GLint uniformLocation = shader.GetUniformLocation("Color");
-		glUniform4f(uniformLocation, 1.0, 0.0, 0.0, 1.0);
+		GLint color = shader.GetUniformLocation("Color");
+		glUniform4f(color, 1.0, 0.0, 0.0, 1.0);
+		
+		const GLfloat scaleMat[16] = {
+			1/ 1.6, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 1 ,0,
+			0, 0, 0, 1
+		};
+		GLint scale = shader.GetUniformLocation("Scale");
+		glUniformMatrix4fv(scale, 1, GL_FALSE, scaleMat);
+
+		const GLfloat translateMat[16] = {
+			1, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 1 ,0,
+			0, 0, 0, 1
+		};
+		GLint translate = shader.GetUniformLocation("Translate");
+		glUniformMatrix4fv(translate, 1, GL_FALSE, translateMat);
+
 		glBindVertexArray(vao);
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 	}

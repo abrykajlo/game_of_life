@@ -2,6 +2,10 @@
 
 attribute vec3 Position;
 
+uniform mat4 Scale;
+uniform mat4 Translate;
+
 void main(void) {
-    gl_Position = vec4(Position, 1.0);
+    vec4 pos = vec4(Position, 1.0);
+    gl_Position = Translate * Scale * pos;
 }

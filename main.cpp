@@ -5,16 +5,6 @@
 
 int Init();
 
-GLfloat square[4][3] = {
-	{0.0,  0.0, 0.0},
-	{1.0,  0.0, 0.0},
-	{1.0, -1.0, 0.0},
-	{0.0, -1.0, 0.0}
-};
-
-GLuint vbo;
-GLuint vao;
-
 int main(int argc, char** argv) 
 {
 	if (Init() < 0)
@@ -27,7 +17,7 @@ int main(int argc, char** argv)
 		"Game Of Life",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		1000,
+		1600,
 		1000,
 		SDL_WINDOW_OPENGL
 	);
@@ -60,6 +50,10 @@ int main(int argc, char** argv)
 
 		SDL_GL_SwapWindow(window);
 	}
+
+	SDL_GL_DeleteContext(context);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
 }
 
 int Init() {
