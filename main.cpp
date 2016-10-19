@@ -43,12 +43,26 @@ int main(int argc, char** argv)
 			switch (event.type) {
 				case SDL_QUIT:
 					game.Quit();
+					break;
+				case SDL_MOUSEBUTTONUP:
+					game.ToggleCell(event.button.x, event.button.y);
+					break;
+				case SDL_KEYUP:
+					switch (event.key.keysym.sym) {
+						case SDLK_SPACE:
+							game.TogglePause();
+					}
 			}
 		}
-		game.Update();
+
+		if (game.IsPaused()) {
+			game.Update();
+		}
 		game.Render();
 
 		SDL_GL_SwapWindow(window);
+
+		SDL_Delay(500);
 	}
 
 	SDL_GL_DeleteContext(context);

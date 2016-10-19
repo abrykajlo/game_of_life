@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "cell.h"
+#include "grid.h"
 
 class Game {
 public:
@@ -11,10 +11,14 @@ public:
 	bool Loop();
 	void Quit();
 	void Update();
+	void TogglePause();
+	void ToggleCell(int, int);
+	bool IsPaused();
 	void Render();
 private:
 	bool loop;
-	Cell cell;
+	Grid grid;
+	bool paused;
 };
 
 #endif

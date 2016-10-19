@@ -1,2 +1,2 @@
 all:
-	g++ -g main.cpp shader.cpp cell.cpp game.cpp -lGL -lGLEW -lSDL2
+	g++ -g main.cpp shader.cpp game.cpp grid.cpp -lGL -lGLEW -lSDL2
